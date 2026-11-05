@@ -30,6 +30,19 @@ def add_book():
     }
 
     print(f'Added "{title}".')
+def return_book():
+    title = input("Title: ").strip()
+
+    if title not in books:
+        print(f'No book titled "{title}".')
+        return
+
+    if books[title]["available"]:
+        print(f'"{title}" is not borrowed.')
+        return
+
+    books[title]["available"] = True
+    print(f'You returned "{title}".')
 
 def main():
     while True:
