@@ -3,7 +3,8 @@
 books = {} # title -> {"author": str, "available": bool}
 def show_menu():
     print("\n=== Library Tracker ===")
-    print("1. List all Books")
+    print("1. Add Book")
+    print("2. List all Books")
     print("0. Exit")
     
 def list_books():
@@ -15,6 +16,21 @@ def list_books():
         status = "Available" if details["available"] else "Borrowed"
         print(f"{title} by {details['author']} - {status}")
 
+def add_book():
+    title = input("Title: ").strip()
+    author = input("Author: ").strip()
+
+    if title in books:
+        print(f'"{title}" is already in the library.')
+        return
+
+    books[title] = {
+        "author": author,
+        "available": True
+    }
+
+    print(f'Added "{title}".')
+
 def main():
     while True:
         show_menu()
@@ -23,6 +39,8 @@ def main():
             print("Goodbye!")
             break
         elif choice == "1":
+            add_book()
+        elif choice=="2":
             list_books()
         else:
             print("Invalid option.")
