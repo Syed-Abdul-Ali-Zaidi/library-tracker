@@ -5,6 +5,7 @@ def show_menu():
     print("\n=== Library Tracker ===")
     print("1. Add Book")
     print("2. List all Books")
+    print("3. Borrow Book")
     print("0. Exit")
     
 def list_books():
@@ -57,6 +58,8 @@ def main():
             add_book()
         elif choice=="2":
             list_books()
+        elif choice=="3":
+            borrow_book()
         else:
             print("Invalid option.")
 
