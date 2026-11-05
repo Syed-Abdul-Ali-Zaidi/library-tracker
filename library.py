@@ -3,7 +3,7 @@
 books = {} # title -> {"author": str, "available": bool}
 def show_menu():
     print("\n=== Library Tracker ===")
-    print("1.List all Books")
+    print("1. List all Books")
     print("0. Exit")
     
 def list_books():
