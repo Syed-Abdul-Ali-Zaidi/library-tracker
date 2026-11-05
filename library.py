@@ -6,6 +6,7 @@ def show_menu():
     print("1. Add Book")
     print("2. List all Books")
     print("3. Borrow Book")
+    print("4. Return Book")
     print("0. Exit")
     
 def list_books():
@@ -47,6 +48,20 @@ def borrow_book():
 
     print(f'You borrowed "{title}".')
 
+def return_book():
+    title = input("Title: ").strip()
+
+    if title not in books:
+        print(f'No book titled "{title}".')
+        return
+    
+    if books[title]["available"]:
+        print(f'"{title}" is not borrowed.')
+        return
+
+    books[title]["available"] = True
+    print(f'You returned "{title}".')
+
 def main():
     while True:
         show_menu()
@@ -60,6 +75,8 @@ def main():
             list_books()
         elif choice=="3":
             borrow_book()
+        elif choice=="4":
+            return_book()
         else:
             print("Invalid option.")
 
