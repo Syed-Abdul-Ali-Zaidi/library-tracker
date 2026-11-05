@@ -4,6 +4,15 @@ books = {} # title -> {"author": str, "available": bool}
 def show_menu():
     print("\n=== Library Tracker ===")
     print("0. Exit")
+    
+def list_books():
+    if not books:
+        print("No books in the library.")
+        return
+
+    for title, details in books.items():
+        status = "Available" if details["available"] else "Borrowed"
+        print(f"{title} by {details['author']} - {status}")
 
 def main():
     while True:
