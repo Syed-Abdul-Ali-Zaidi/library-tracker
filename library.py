@@ -1,6 +1,12 @@
 # library.py
 # A simple command-line library tracker.
 books = {} # title -> {"author": str, "available": bool}
+def find_book_title(title):
+    for book_title in books:
+        if book_title.lower() == title.lower():
+            return book_title
+    return None
+
 def show_menu():
     print("\n=== Library Tracker ===")
     print("1. Add Book")
@@ -22,7 +28,7 @@ def add_book():
     title = input("Title: ").strip()
     author = input("Author: ").strip()
 
-    if title in books:
+    if find_book_title(title) is not None:
         print(f'"{title}" is already in the library.')
         return
 
@@ -35,32 +41,33 @@ def add_book():
 
 def borrow_book():
     title = input("Title: ").strip()
+    book_title = find_book_title(title)
 
-    if title not in books:
+    if book_title is None:
         print(f'No book titled "{title}".')
         return
 
-    if not books[title]["available"]:
-        print(f'"{title}" is already borrowed.')
+    if not books[book_title]["available"]:
+        print(f'"{book_title}" is already borrowed.')
         return
 
-    books[title]["available"] = False
-
-    print(f'You borrowed "{title}".')
+    books[book_title]["available"] = False
+    print(f'You borrowed "{book_title}".')
 
 def return_book():
     title = input("Title: ").strip()
+    book_title = find_book_title(title)
 
-    if title not in books:
+    if book_title is None:
         print(f'No book titled "{title}".')
         return
-    
-    if books[title]["available"]:
-        print(f'"{title}" is not borrowed.')
+
+    if books[book_title]["available"]:
+        print(f'"{book_title}" is not borrowed.')
         return
 
-    books[title]["available"] = True
-    print(f'You returned "{title}".')
+    books[book_title]["available"] = True
+    print(f'You returned "{book_title}".')
 
 def main():
     while True:
